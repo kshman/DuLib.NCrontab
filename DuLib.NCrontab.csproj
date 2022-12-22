@@ -1,22 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Du</RootNamespace>
+    <RepositoryUrl>https://github.com/kshman/DuLib</RepositoryUrl>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
+    <Version>1.0.0</Version>
 
     <Title>DuLib.NCrontab</Title>
     <PackageId>DuLib.NCrontab</PackageId>
     <Product>DuLib.NCrontab</Product>
-    <Description>DuLib.NCrontab</Description>
+    <Description>DuLib NCrontab</Description>
     <Authors>kshman</Authors>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <RepositoryUrl>https://github.com/kshman/DuLib.NCrontab</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/kshman/DuLib</PackageProjectUrl>
+	<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+	<IncludeSymbols>true</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
