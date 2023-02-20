@@ -5,21 +5,23 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Du</RootNamespace>
-    <RepositoryUrl>https://github.com/kshman/DuLib</RepositoryUrl>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.2</Version>
 
+    <RepositoryUrl>https://github.com/kshman/DuLib.NCrontab</RepositoryUrl>
+    <Version>0.1.2</Version>
     <Title>DuLib.NCrontab</Title>
     <PackageId>DuLib.NCrontab</PackageId>
     <Product>DuLib.NCrontab</Product>
     <Description>DuLib NCrontab</Description>
     <Authors>kshman</Authors>
-    <PackageProjectUrl>https://github.com/kshman/DuLib</PackageProjectUrl>
-	<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-	<IncludeSymbols>true</IncludeSymbols>
-	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
