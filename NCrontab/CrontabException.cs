@@ -1,12 +1,10 @@
-﻿using System.Runtime.Serialization;
-using Du.Properties;
+﻿using Du.Properties;
 
 namespace Du.NCrontab;
 
 /// <summary>
 /// 크론탭 예외
 /// </summary>
-[Serializable]
 public class CrontabException : Exception
 {
     /// <summary>
@@ -24,11 +22,6 @@ public class CrontabException : Exception
     /// 새 인스턴스르 만들어요
     /// </summary>
     public CrontabException(string? message, Exception? innerException) : base(message, innerException) { }
-
-    /// <summary>
-    /// 새 인스턴스르 만들어요
-    /// </summary>
-    protected CrontabException(SerializationInfo info, StreamingContext context) : base(info, context) { }
 }
 
 /// <summary>

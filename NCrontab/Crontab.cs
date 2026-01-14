@@ -7,14 +7,18 @@ namespace Du.NCrontab;
 /// <summary>
 /// 크론을 실행해요
 /// </summary>
-public class Crontab : IDisposable
+/// <remarks>
+/// 컨스트럭터
+/// </remarks>
+/// <param name="logger"></param>
+public class Crontab(ILogger? logger = null) : IDisposable
 {
 	private static ulong s_task_id;
 
-	private readonly ILogger? _lg;
-	private readonly object _lock = new();
+	private readonly ILogger? _lg = logger;
+	private readonly Lock _lock = new();
 
-	private readonly List<CrontabTask> _tasks = new();
+	private readonly List<CrontabTask> _tasks = [];
 	private CancellationTokenSource? _cts;
 	private CancellationToken? _nct;
 
@@ -51,17 +55,9 @@ public class Crontab : IDisposable
 	/// 이슈가 끝날 때
 	/// </summary>
 	public event EventHandler<CrontabLeaveEventArg>? Leave;
-	#endregion
 
+	#endregion
 	#region 클래스
-	/// <summary>
-	/// 컨스트럭터
-	/// </summary>
-	/// <param name="logger"></param>
-	public Crontab(ILogger? logger = null)
-	{
-		_lg = logger;
-	}
 
 	/// <inheritdoc/>
 	public void Dispose()

@@ -13,7 +13,7 @@ public sealed class CrontabSchedule
     private static Calendar Calendar => CultureInfo.InvariantCulture.Calendar;
     private static readonly CrontabField SecondZero = CrontabField.Seconds("0");
 
-    private static readonly char[] SeparatorSpace = { ' ' };
+    private static readonly char[] SeparatorSpace = [' '];
 
     private readonly CrontabField? _seconds;
     private readonly CrontabField _minutes;
@@ -65,10 +65,9 @@ public sealed class CrontabSchedule
     /// <exception cref="ArgumentNullException"></exception>
     public static T TryParse<T>(string? expression, bool includeSecond, Func<CrontabSchedule, T> valueSelector, Func<CrontabExceptionProvider, T> errorSelector)
     {
-        if (expression == null)
-            throw new ArgumentNullException(nameof(expression));
+		ArgumentNullException.ThrowIfNull(expression);
 
-        var tokens = expression.Split(SeparatorSpace, StringSplitOptions.RemoveEmptyEntries);
+		var tokens = expression.Split(SeparatorSpace, StringSplitOptions.RemoveEmptyEntries);
 
         var expectedTokenCount = includeSecond ? 6 : 5;
         if (tokens.Length < expectedTokenCount || tokens.Length > expectedTokenCount)
@@ -333,4 +332,3 @@ public sealed class CrontabSchedule
         return writer.ToString();
     }
 }
-#pragma warning restore CS1573

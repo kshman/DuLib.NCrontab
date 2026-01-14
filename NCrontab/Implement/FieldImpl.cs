@@ -9,15 +9,15 @@ namespace Du.NCrontab.Implement;
 internal delegate T FieldAccumulator<T>(int start, int end, int interval, T success, Func<CrontabExceptionProvider, T> onError);
 
 [Serializable]
-internal class FieldImpl : IObjectReference
+internal class FieldImpl
 {
     public static readonly FieldImpl Second = new(CrontabFieldKind.Second, 0, 59, null);
     public static readonly FieldImpl Minute = new(CrontabFieldKind.Minute, 0, 59, null);
     public static readonly FieldImpl Hour = new(CrontabFieldKind.Hour, 0, 23, null);
     public static readonly FieldImpl Day = new(CrontabFieldKind.Day, 1, 31, null);
-    public static readonly FieldImpl Month = new(CrontabFieldKind.Month, 1, 12, new[]
-    {
-        Resources.January,
+    public static readonly FieldImpl Month = new(CrontabFieldKind.Month, 1, 12,
+	[
+		Resources.January,
         Resources.February,
         Resources.March,
         Resources.April,
@@ -29,22 +29,22 @@ internal class FieldImpl : IObjectReference
         Resources.October,
         Resources.November,
         Resources.December
-    });
-    public static readonly FieldImpl DayOfWeek = new(CrontabFieldKind.DayOfWeek, 0, 6, new[]
-    {
-        Resources.Sunday,
+    ]);
+    public static readonly FieldImpl DayOfWeek = new(CrontabFieldKind.DayOfWeek, 0, 6,
+	[
+		Resources.Sunday,
         Resources.Monday,
         Resources.Tuesday,
         Resources.Wednesday,
         Resources.Thursday,
         Resources.Friday,
         Resources.Saturday
-    });
+    ]);
 
-    private static readonly FieldImpl[] FieldByKind = { Second, Minute, Hour, Day, Month, DayOfWeek };
+    private static readonly FieldImpl[] FieldByKind = [Second, Minute, Hour, Day, Month, DayOfWeek];
     private static readonly CompareInfo Comparer = CultureInfo.InvariantCulture.CompareInfo;
 
-    private static readonly char[] SeparatorComma = { ',' };
+    private static readonly char[] SeparatorComma = [','];
 
     private readonly string[]? _names; // TODO reconsider empty array == unnamed
 
@@ -56,7 +56,7 @@ internal class FieldImpl : IObjectReference
 
     public static FieldImpl FromKind(CrontabFieldKind kind)
     {
-        if (Enum.IsDefined(typeof(CrontabFieldKind), kind))
+        if (Enum.IsDefined(kind))
             return FieldByKind[(int)kind];
 
         var kinds = string.Join(", ",
@@ -67,7 +67,7 @@ internal class FieldImpl : IObjectReference
 
     private FieldImpl(CrontabFieldKind kind, int minValue, int maxValue, string[]? names)
     {
-        Debug.Assert(Enum.IsDefined(typeof(CrontabFieldKind), kind));
+        Debug.Assert(Enum.IsDefined(kind));
         Debug.Assert(minValue >= 0);
         Debug.Assert(maxValue >= minValue);
         Debug.Assert(names == null || names.Length == (maxValue - minValue + 1));
@@ -83,12 +83,10 @@ internal class FieldImpl : IObjectReference
 
     public void Format(CrontabField? field, TextWriter? writer, bool noNames)
     {
-        if (field == null)
-            throw new ArgumentNullException(nameof(field));
-        if (writer == null)
-            throw new ArgumentNullException(nameof(writer));
+		ArgumentNullException.ThrowIfNull(field);
+		ArgumentNullException.ThrowIfNull(writer);
 
-        var next = field.GetFirst();
+		var next = field.GetFirst();
         var count = 0;
 
         while (next != -1)
@@ -162,10 +160,9 @@ internal class FieldImpl : IObjectReference
     public T TryParse<T>(string str, FieldAccumulator<T>? acc, T success,
                          Func<CrontabExceptionProvider, T> errorSelector)
     {
-        if (acc == null)
-            throw new ArgumentNullException(nameof(acc));
+		ArgumentNullException.ThrowIfNull(acc);
 
-        if (string.IsNullOrEmpty(str))
+		if (string.IsNullOrEmpty(str))
             return success;
 
         try
@@ -275,5 +272,5 @@ internal class FieldImpl : IObjectReference
         throw new CrontabException(string.Format(Resources.ExceptionNotKnowFollow, str, string.Join(", ", _names)));
     }
 
-    public object GetRealObject(StreamingContext context) => FromKind(Kind);
+    public object GetRealObject(StreamingContext _) => FromKind(Kind);
 }
