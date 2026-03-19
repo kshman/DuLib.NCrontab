@@ -8,7 +8,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 
     <RepositoryUrl>https://github.com/kshman/DuLib.NCrontab</RepositoryUrl>
-    <Version>0.1.3</Version>
+    <Version>0.1.4</Version>
     <Title>DuLib.NCrontab</Title>
     <PackageId>DuLib.NCrontab</PackageId>
     <Product>DuLib.NCrontab</Product>
@@ -44,7 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NCrontab\Suppliment\" />
+    <Folder Include="NCrontab\Supplement\" />
   </ItemGroup>
 
   <ItemGroup>

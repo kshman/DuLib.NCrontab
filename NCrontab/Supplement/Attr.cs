@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Du.NCrontab.Suppliment;
+namespace Du.NCrontab.Supplement;
 
 internal static class Attr
 {
@@ -19,5 +19,5 @@ internal static class Attr
 	}
 
 	public static string GetDescription(this Enum e)
-		=> GetDescription<Enum>(e);
+		=> e.GetDescription<Enum>();
 }

@@ -27,5 +27,5 @@ public class CrontabException : Exception
 /// <summary>
 /// 크론탭 예외 정보를 제공할 때 쓰는 대리자
 /// </summary>
-/// <returns></returns>
+/// <returns>예외 인스턴스</returns>
 public delegate Exception CrontabExceptionProvider();
